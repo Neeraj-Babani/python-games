@@ -9,14 +9,14 @@ def create_board():
     return board
 
 def drop_peice(board,row,col,piece):
-    board[row][col]=piece
+    board[row][col-1]=piece
 
 def is_valid_location(board,col):
-    return board[ROW_COUNT-1][col]==0
+    return board[ROW_COUNT-1][col-1]==0
 
 def get_next_open_row(board,col):
     for r in  range(ROW_COUNT):
-        if board[r][col]==0:
+        if board[r][col-1]==0:
             return r
 
 def print_board(board):
@@ -57,7 +57,7 @@ turn=0
 while not game_over:
     #Ask for player 1 input
     if turn ==0:
-        col=int(input("Player 1 make your Selection(0-6):"))
+        col=int(input("Player 1 make your Selection(1-7):"))
         if is_valid_location(board,col):
             row=get_next_open_row(board,col)
             drop_peice(board,row,col,1)
@@ -68,7 +68,7 @@ while not game_over:
 
     #Ask for player 2 input
     else:
-        col=int(input("Player 2 make your Selection(0-6):"))
+        col=int(input("Player 2 make your Selection(1-7):"))
         if is_valid_location(board,col):
             row=get_next_open_row(board,col)
             drop_peice(board,row,col,2)
